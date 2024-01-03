@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        header {
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        img {
+            border-radius: 50%;
+            margin-bottom: 20px;
+            max-width: 200px;
+            height: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .animated {
+            opacity: 0;
+            transform: translateY(20px);
+            animation-fill-mode: both;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>About Me</h1>
+    </header>
+    <main>
+        <img src="isaac.png">
+        <p class="animated" id="job-title">Student of RP</p>
+        <p class="animated" id="age"></p>
+        <p class="animated" id="description">I am Isaac, I am super cool, I am really hungry.</p>
+        <button onclick="replayAnimations()">Replay Animations</button>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/animejs"></script>
+    <script>
+        function replayAnimations() {
+            // Reset styles
+            anime.set('.animated', {
+                opacity: 0,
+                translateY: '20px'
+            });
+
+            // Staggered Animation
+            anime({
+                targets: '.animated',
+                opacity: 1,
+                translateY: 0,
+                delay: anime.stagger(300),
+                easing: 'easeInOutQuad'
+            });
+
+            // Number Counter Animation
+            anime({
+                targets: '#age',
+                innerHTML: [0, 18],
+                easing: 'linear',
+                round: 1,
+                duration: 3000
+            });
+
+            // Controls Animation
+            anime({
+                targets: '#job-title',
+                translateX: 0,
+                rotate: '0turn',
+                backgroundColor: '#333',
+                duration: 0
+            });
+        }
+
+        // Initial animations
+        replayAnimations();
+    </script>
+</body>
+</html>
